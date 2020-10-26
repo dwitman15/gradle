@@ -169,11 +169,10 @@ public class DefaultConfigurationContainer extends AbstractValidatingNamedDomain
     public ConfigurationInternal detachedConfiguration(Dependency... dependencies) {
         String name = DETACHED_CONFIGURATION_DEFAULT_NAME + detachedConfigurationDefaultNameCounter.getAndIncrement();
         DetachedConfigurationsProvider detachedConfigurationsProvider = new DetachedConfigurationsProvider();
-        DefaultConfiguration detachedConfiguration = instantiator.newInstance(DefaultConfiguration.class,
-            context, name, detachedConfigurationsProvider, resolver,
-            listenerManager, dependencyMetaDataProvider, resolutionStrategyFactory, projectAccessListener,
-            fileCollectionFactory, buildOperationExecutor, instantiator, artifactNotationParser, capabilityNotationParser, attributesFactory,
-            rootComponentMetadataBuilder.withConfigurationsProvider(detachedConfigurationsProvider), documentationRegistry, userCodeApplicationContext, context, projectStateRegistry, domainObjectCollectionFactory);
+        DefaultConfiguration detachedConfiguration = instantiator.newInstance(DefaultConfiguration.class, context, name, detachedConfigurationsProvider, resolver, listenerManager,
+            dependencyMetaDataProvider, resolutionStrategyFactory, projectAccessListener, fileCollectionFactory, buildOperationExecutor, instantiator, artifactNotationParser,
+            capabilityNotationParser, attributesFactory, rootComponentMetadataBuilder.withConfigurationsProvider(detachedConfigurationsProvider), documentationRegistry, userCodeApplicationContext,
+            context, projectStateRegistry, domainObjectCollectionFactory, calculatedValueContainerFactory);
         DomainObjectSet<Dependency> detachedDependencies = detachedConfiguration.getDependencies();
         for (Dependency dependency : dependencies) {
             detachedDependencies.add(dependency.copy());

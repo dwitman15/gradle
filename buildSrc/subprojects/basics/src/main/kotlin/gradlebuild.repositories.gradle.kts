@@ -16,6 +16,10 @@
 
 repositories {
     maven {
+        name = "Native platform snapshots"
+        url = uri("https://repo.gradle.org/gradle/ext-snapshots-local")
+    }
+    maven {
         name = "Gradle libs"
         url = uri("https://repo.gradle.org/gradle/libs")
     }

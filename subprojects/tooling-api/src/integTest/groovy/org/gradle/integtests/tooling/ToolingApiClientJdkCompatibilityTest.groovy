@@ -155,6 +155,7 @@ public class ToolingApiCompatibilityClient {
             String result = connection.action(new ToolingApiCompatibilityBuildAction())
                 .setStandardOutput(out)
                 .setStandardError(err)
+                .withArguments("-s", "-i")
                 .setJavaHome(javaHome)
                 .run();
             assert result.contains("Build action result");
@@ -196,7 +197,7 @@ public class ToolingApiCompatibilityBuildAction implements BuildAction<String> {
         Assume.assumeTrue(tapiClientCompilerJdk && gradleDaemonJdk)
 
         when:
-        succeeds("runTask",
+        succeeds("runTask", "-s",
                 "-PclientJdk=" + clientJdkVersion.majorVersion,
                 "-PtargetJdk=" + gradleDaemonJdk.javaHome.absolutePath,
                 "-PgradleVersion=" + gradleVersion)
@@ -234,7 +235,7 @@ public class ToolingApiCompatibilityBuildAction implements BuildAction<String> {
         }
 
         when:
-        succeeds("buildAction",
+        succeeds("buildAction", "-s",
                 "-PclientJdk=" + clientJdkVersion.majorVersion,
                 "-PtargetJdk=" + gradleDaemonJdk.javaHome.absolutePath,
                 "-PgradleVersion=" + gradleVersion)

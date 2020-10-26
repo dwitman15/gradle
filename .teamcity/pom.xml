@@ -42,7 +42,6 @@
 
     <build>
         <sourceDirectory>.</sourceDirectory>
-        <testSourceDirectory>../.teamcityTest/Gradle_Check_Tests</testSourceDirectory>
         <plugins>
             <plugin>
                 <artifactId>kotlin-maven-plugin</artifactId>
@@ -118,11 +117,6 @@
     </build>
 
     <dependencies>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.62</version>
-        </dependency>
         <dependency>
             <groupId>org.jetbrains.teamcity</groupId>
             <artifactId>configs-dsl-kotlin</artifactId>

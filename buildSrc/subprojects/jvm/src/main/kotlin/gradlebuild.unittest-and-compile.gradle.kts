@@ -200,14 +200,22 @@ fun configureTests() {
     }
 
     tasks.withType<Test>().configureEach {
+        outputs.cacheIf { false }
         filterEnvironmentVariables()
 
-        maxParallelForks = project.maxParallelForks
+        maxParallelForks = 20 // project.maxParallelForks
 
         configureJvmForTest()
         addOsAsInputs()
 
         val testName = name
+
+        if (!BuildEnvironment.isIntelliJIDEA) {
+            // JUnit 5 Vintage engine can't recognize Spock @Unroll test method correctly
+            // So if running an @Unroll method in IDEA with include pattern "SomeClass.methodName"
+            // The result will be incorrect. In this case we fallback to JUnit
+            useJUnitPlatform()
+        }
 
         if (BuildEnvironment.isCiServer) {
             retry {
@@ -229,6 +237,7 @@ fun configureTests() {
                     OperatingSystem.current().isWindows -> requirements.set(listOf("os=windows"))
                     OperatingSystem.current().isMacOsX -> requirements.set(listOf("os=macos"))
                 }
+                requirements.set(listOf("gbt-dogfooding"))
             }
         }
     }

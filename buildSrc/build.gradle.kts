@@ -79,6 +79,16 @@ allprojects {
                 excludeModule("com.google.j2objc", "j2objc-annotations")
             }
         }
+        maven {
+            url = project.uri("https://repo.gradle.org/gradle/enterprise-libs-snapshots-local")
+            credentials {
+                username = System.getenv("ARTIFACTORY_USERNAME")
+                password = System.getenv("ARTIFACTORY_PASSWORD")
+            }
+            authentication {
+                create<BasicAuthentication>("basic")
+            }
+        }
         gradlePluginPortal()
         maven {
             name = "Gradle snapshot libs"

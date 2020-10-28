@@ -52,7 +52,6 @@ Garbage collection time goes from [2.6 seconds](https://scans.gradle.com/s/3bg67
 
 While the impact on your build may vary, most builds can expect a noticeably shorter feedback loop when editing Kotlin DSL build logic thanks to this improvement.
 
-<<<<<<< HEAD
 ### Compilation avoidance for Kotlin DSL scripts
 
 Until now, any changes to build logic in [buildSrc](userguide/organizing_gradle_projects.html#sec:build_sources) required all the build scripts in the project to be recompiled.
@@ -177,18 +176,21 @@ Output of `gradle -q javaToolchains`:
  + AdoptOpenJDK 1.8.0_242
      | Location:           /path/to/8.0.242.hs-adpt/jre
      | Language Version:   8
+     | Vendor:             AdoptOpenJDK
      | Is JDK:             true
      | Detected by:        SDKMAN!
 
  + OpenJDK 15-ea
      | Location:           /path/to/java/15.ea.21-open
      | Language Version:   15
+     | Vendor:             AdoptOpenJDK
      | Is JDK:             true
      | Detected by:        SDKMAN!
 
  + Oracle JDK 1.7.0_80
      | Location:           /Library/Java/jdk1.7.0_80.jdk/jre
      | Language Version:   7
+     | Vendor:             Oracle
      | Is JDK:             true
      | Detected by:        macOS java_home
 ```

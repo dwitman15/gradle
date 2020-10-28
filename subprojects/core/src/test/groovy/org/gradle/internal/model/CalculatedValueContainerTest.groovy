@@ -136,6 +136,10 @@ class CalculatedValueContainerTest extends ConcurrentSpec {
         container.get() == 1
     }
 
+    def "threads block until after value is finalized"() {
+        expect: false
+    }
+
     static class Calculator implements ValueCalculator<Integer> {
         private final AtomicInteger value = new AtomicInteger()
 
